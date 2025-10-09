@@ -1,0 +1,6 @@
+<svg width="128" height="128" xmlns="http://www.w3.org/2000/svg">
+  <!-- Resource Wars Project Icon -->
+  <rect width="128" height="128" fill="#0066FF"/>
+  <circle cx="64" cy="64" r="40" fill="#FFD700" stroke="#000" stroke-width="3"/>
+  <text x="64" y="75" font-size="48" font-weight="bold" text-anchor="middle" fill="#000">RW</text>
+</svg>
