@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: resource-wars-server
+  namespace: resource-wars
+  labels:
+    app: resource-wars
+    component: game-server
+spec:
+  replicas: 1  # Game servers typically run 1 instance per lobby
+  selector:
+    matchLabels:
+      app: resource-wars
+      component: game-server
+  template:
+    metadata:
+      labels:
+        app: resource-wars
+        component: game-server
+    spec:
+      containers:
+      - name: game-server
+        image: suparious/resource-wars:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 9999
+          name: game-udp
+          protocol: UDP
+        - containerPort: 9998
+          name: status-tcp
+          protocol: TCP
+        env:
+        - name: SERVER_PORT
+          value: "9999"
+        - name: SERVER_NAME
+          value: "SRT HQ Resource Wars Server"
+        - name: MAX_PLAYERS
+          value: "8"
+        resources:
+          requests:
+            cpu: 500m
+            memory: 512Mi
+          limits:
+            cpu: 2000m
+            memory: 2Gi
+        # Note: Health checks commented out until server implements status endpoint
+        # livenessProbe:
+        #   tcpSocket:
+        #     port: 9998
+        #   initialDelaySeconds: 30
+        #   periodSeconds: 30
+        #   timeoutSeconds: 5
+        # readinessProbe:
+        #   tcpSocket:
+        #     port: 9998
+        #   initialDelaySeconds: 10
+        #   periodSeconds: 10
+        #   timeoutSeconds: 3

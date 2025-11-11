@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: resource-wars-server
+  namespace: resource-wars
+  labels:
+    app: resource-wars
+    component: game-server
+spec:
+  type: LoadBalancer
+  # MetalLB will assign an IP from the configured pool
+  # External clients connect directly to this IP:port
+  selector:
+    app: resource-wars
+    component: game-server
+  ports:
+  - name: game-udp
+    port: 9999
+    targetPort: 9999
+    protocol: UDP
+  - name: status-tcp
+    port: 9998
+    targetPort: 9998
+    protocol: TCP
+  # Optional: Specify IP address if you want a specific one from MetalLB pool
+  # loadBalancerIP: 172.20.75.205
