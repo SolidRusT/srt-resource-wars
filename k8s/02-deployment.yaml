@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
       - name: game-server
-        image: suparious/resource-wars:latest
+        image: ghcr.io/solidrust/resource-wars:latest
         imagePullPolicy: Always
         ports:
         - containerPort: 9999
