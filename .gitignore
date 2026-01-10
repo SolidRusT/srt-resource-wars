@@ -9,3 +9,5 @@ __pycache__/
 *.pyz
 *.pywz
 *.pyzw
+# Claude Code local settings (workstation-specific)
+.claude/settings.local.json

@@ -3,7 +3,7 @@
 **Project**: Resource Wars - Dune II-inspired RTS game server on SRT-HQ Kubernetes platform
 **Status**: In Development (MVP phase) - Game server infrastructure ready
 **Server Type**: Godot 4.x Headless Server (Multiplayer)
-**Last Updated**: 2025-11-10
+**Last Updated**: January 3, 2026
 **Shaun's Golden Rule**: **No workarounds, no temporary fixes, no disabled functionality. Full solutions only.**
 
 ---
@@ -25,44 +25,20 @@
 1. Read "Project Overview" below
 2. Understand this is a GAME SERVER (not a web app)
 3. No Ingress, no SSL certificates (game protocol)
-4. Reference ChromaDB for platform capabilities
+4. Check srt-hq-k8s CLAUDE.md for platform capabilities
 5. Check main game repo for game logic and mechanics
 
 ---
 
-## 📚 PLATFORM INTEGRATION (ChromaDB Knowledge Base)
+## 📚 PLATFORM INTEGRATION
 
-**When working in this submodule**, you cannot access the parent srt-hq-k8s repository files. Use ChromaDB to query platform capabilities and integration patterns.
+**Related Repositories**:
+- **srt-hq-k8s**: `/Users/shaun/repos/srt-hq-k8s/` - Kubernetes platform (12 nodes)
 
-**Collection**: `srt-hq-k8s-platform-guide` (43 docs, updated 2025-11-10)
-
-**Why This Matters for Resource Wars**:
-The game server runs on the SRT-HQ Kubernetes platform and needs:
-- MetalLB LoadBalancer for external IP assignment
-- Persistent storage for server state (future)
-- Monitoring integration (future)
-- Platform deployment conventions
-
-**Query When You Need**:
-- Platform architecture and three-tier taxonomy
-- MetalLB LoadBalancer service patterns
-- Storage classes for persistent game state
-- Monitoring and logging integration
-- Platform networking capabilities
-
-**Example Queries**:
-```
-"What is the srt-hq-k8s platform architecture?"
-"How does MetalLB LoadBalancer work?"
-"What storage classes are available for game state?"
-"How do I integrate with platform monitoring?"
-```
-
-**When NOT to Query**:
-- ❌ Godot game development (see main game repo)
-- ❌ Game logic and mechanics (see game README.md and docs/)
-- ❌ Docker build process (use build-and-push.ps1)
-- ❌ RTS gameplay features (see main game repository)
+**Platform Features Used**:
+- **LoadBalancer**: MetalLB for external IP assignment (game ports)
+- **Storage**: Optional PVC for server state
+- **Networking**: UDP/TCP game ports (ENet protocol)
 
 ---
 
@@ -91,10 +67,8 @@ The game server runs on the SRT-HQ Kubernetes platform and needs:
 
 ## 🗂️ LOCATIONS
 
-**Repository**:
-- GitHub: `git@github.com:SolidRusT/srt-resource-wars.git`
-- Submodule: `/mnt/c/Users/shaun/repos/srt-hq-k8s/manifests/apps/resource-wars/`
-- Standalone: `/mnt/c/Users/shaun/repos/srt-resource-wars/`
+**Repository**: `/Users/shaun/repos/srt-resource-wars/`
+**GitHub**: `git@github.com:SolidRusT/srt-resource-wars.git`
 
 **Deployment**:
 - Game Dev: Godot Editor → F5 (local testing)
@@ -180,7 +154,7 @@ resource-wars/
 
 ```bash
 # Work in main game repository
-cd /mnt/c/Users/shaun/repos/srt-resource-wars
+cd /Users/shaun/repos/srt-resource-wars
 
 # Install Python dependencies (for asset generation)
 pip install svgwrite cairosvg pillow noise
@@ -199,7 +173,7 @@ python generate_sprites.py
 
 ```bash
 # Work in submodule
-cd /mnt/c/Users/shaun/repos/srt-hq-k8s/manifests/apps/resource-wars
+cd /Users/shaun/repos/srt-hq-k8s/manifests/apps/resource-wars
 
 # Build server image
 .\build-and-push.ps1
@@ -214,7 +188,7 @@ docker run --rm -p 9999:9999/udp -p 9998:9998/tcp suparious/resource-wars:latest
 
 ```bash
 # Work in submodule
-cd /mnt/c/Users/shaun/repos/srt-hq-k8s/manifests/apps/resource-wars
+cd /Users/shaun/repos/srt-hq-k8s/manifests/apps/resource-wars
 
 # Build and push to Docker Hub
 .\build-and-push.ps1 -Login -Push
@@ -455,7 +429,7 @@ nc -zv <EXTERNAL-IP> 9998
 ## 🎮 GAME DEVELOPMENT NOTES
 
 **This is the SERVER deployment**. For game development:
-- Work in main repository: `/mnt/c/Users/shaun/repos/srt-resource-wars`
+- Work in main repository: `/Users/shaun/repos/srt-resource-wars`
 - See game documentation: `docs/` directory
 - Asset generation: `tools/` Python scripts
 - Godot project: `godot-project/` directory
@@ -479,7 +453,7 @@ You're doing well if:
 ✅ You understand this is a GAME SERVER (not a web app)
 ✅ You know there's no Ingress or SSL certificates (game protocol)
 ✅ You know service is LoadBalancer type (MetalLB)
-✅ You reference ChromaDB for platform integration questions
+✅ You check srt-hq-k8s CLAUDE.md for platform integration questions
 ✅ You provide complete solutions (never workarounds)
 ✅ You use PowerShell scripts for deployment
 ✅ You validate changes work end-to-end
@@ -501,7 +475,7 @@ You're doing well if:
 
 ---
 
-**Last Updated**: 2025-11-10
+**Last Updated**: January 3, 2026
 **Status**: Infrastructure Ready (Game logic in MVP development)
 **Platform**: SRT-HQ Kubernetes
 **Server Type**: Godot 4.x Headless (Multiplayer)
