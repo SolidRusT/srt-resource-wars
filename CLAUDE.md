@@ -475,6 +475,19 @@ You're doing well if:
 
 ---
 
+## Claude Code Configuration
+
+**Commands** (`.claude/commands/`):
+- No custom commands configured yet
+
+**MCP Tools** (`.mcp.json`):
+- `time` - Date calculations
+- `calculator` - Math operations
+- `github` - PR/issue management
+- `gitea` - Gitea PR/issue management
+
+---
+
 **Last Updated**: January 3, 2026
 **Status**: Infrastructure Ready (Game logic in MVP development)
 **Platform**: SRT-HQ Kubernetes
